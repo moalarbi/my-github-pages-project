@@ -1,4 +1,3 @@
-// ─── State ─────────────────────────────────────────────────────────────────
 let activeFilter = 'all';
 let searchQuery = '';
 
@@ -31,6 +30,11 @@ function getFiltered() {
 // ─── Build UI ───────────────────────────────────────────────────────────────
 function buildFilters() {
   const wrap = document.getElementById('filterBtns');
+  // Clear existing buttons except 'All'
+  const allBtn = wrap.querySelector('[data-cat="all"]');
+  wrap.innerHTML = '';
+  wrap.appendChild(allBtn);
+
   getCategories().forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
@@ -51,7 +55,6 @@ function setFilter(cat, btn) {
 function render() {
   const list = getFiltered();
   const lib = document.getElementById('library');
-
   if (list.length === 0) {
     lib.innerHTML = `<div class="empty-state">
       <span>⬡</span>
@@ -59,17 +62,15 @@ function render() {
     </div>`;
     return;
   }
-
   // Group by category
   const groups = {};
   list.forEach(p => {
     if (!groups[p.cat]) groups[p.cat] = [];
     groups[p.cat].push(p);
   });
-
   lib.innerHTML = Object.entries(groups).map(([cat, items]) => `
     <section class="cat-section">
-      <h2 class="cat-title"><span>${cat}</span><small>${items.length} برومبت</small></h2>
+      <h2 class="cat-title">${cat} <small>${items.length} سكربت</small></h2>
       <div class="cards-grid">
         ${items.map(cardHTML).join('')}
       </div>
@@ -118,11 +119,9 @@ function toggleCard(id) {
   const body = document.getElementById(`body-${id}`);
   const card = document.getElementById(`card-${id}`);
   const isOpen = body.classList.contains('open');
-
   // close all
   document.querySelectorAll('.card-body.open').forEach(b => b.classList.remove('open'));
   document.querySelectorAll('.card.expanded').forEach(c => c.classList.remove('expanded'));
-
   if (!isOpen) {
     body.classList.add('open');
     card.classList.add('expanded');
