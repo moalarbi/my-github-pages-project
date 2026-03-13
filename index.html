@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt OS — مكتبة البرومبتات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="noise"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-block">
+      <span class="logo-mark">⬡</span>
+      <div>
+        <h1>Prompt OS</h1>
+        <p class="tagline">مكتبة برومبتات التسويق الرقمي</p>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="stat"><span id="total-count">0</span><small>برومبت</small></div>
+      <div class="stat"><span id="cat-count">0</span><small>تصنيف</small></div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="ابحث في المكتبة...">
+  </div>
+  <div class="filters" id="filterBtns">
+    <button class="filter-btn active" data-cat="all">الكل</button>
+  </div>
+  <button class="export-btn" onclick="exportAll()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    تصدير الكل
+  </button>
+</div>
+
+<main id="library"></main>
+
+<div id="toast" class="toast">تم النسخ ✓</div>
+
+<script src="prompts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
